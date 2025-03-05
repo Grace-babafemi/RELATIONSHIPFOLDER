@@ -5,6 +5,6 @@ const { createUserDetails } = require("../Controller/detailsController");
 
 const detailRouter = Router();
 
-detailRouter.post("/createDetails", createUserDetails)
+detailRouter.post("/", createUserDetails)
 
 module.exports = detailRouter;
