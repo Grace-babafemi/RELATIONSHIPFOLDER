@@ -1,6 +1,5 @@
 const userModel = require("../Model/userModel");
-const detailsModel = require("../Model/userModel");
-
+const detailsModel = require("../Model/detailsModel");
 const createUserDetails = async (req, res) => {
   try {
     const { userId, age, address } = req.body;
@@ -15,9 +14,11 @@ const createUserDetails = async (req, res) => {
       address,
       user: getUser._id,
     });
+
+    createUserDetails.user = getUser._id;
     createDetails.save();
     getUser.details = createDetails._id;
-    await getUser.save();
+    getUser.save();
     return res
       .status(201)
       .json({
