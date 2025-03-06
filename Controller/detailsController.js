@@ -19,15 +19,32 @@ const createUserDetails = async (req, res) => {
     createDetails.save();
     getUser.details = createDetails._id;
     getUser.save();
-    return res
-      .status(201)
-      .json({
-        Message: "Details created successfully",
-        data: createDetails,
-      });
+    return res.status(201).json({
+      Message: "Details created successfully",
+      data: createDetails,
+    });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = { createUserDetails };
+const updateDetails = async (req, res) => {
+  try {
+    const userUpdate = await detailsModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!userUpdate) {
+      return res.status(404).json({ Message: "User Not Found" });
+    }
+    return res.status(200).json(userUpdate);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { createUserDetails, updateDetails };

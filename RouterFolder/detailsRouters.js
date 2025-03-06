@@ -1,10 +1,10 @@
 const { Router } = require("express");
-// const { createUser } = require("../Controller/userController");
-const { createUserDetails } = require("../Controller/detailsController");
+const { createUserDetails, updateDetails } = require("../Controller/detailsController");
 
 
 const detailRouter = Router();
 
 detailRouter.post("/", createUserDetails)
+detailRouter.patch("/:id/details/:id", updateDetails)
 
 module.exports = detailRouter;

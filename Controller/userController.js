@@ -19,16 +19,15 @@ const createUser = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-    try {
-        const {userId} = req.params;
-        const getusers = await userModel.find(userId);
-        return res.status(200).json({getusers})
-    } catch (error) {
-        return res.status(500).json({error: error.message})
-    }
+  try {
+    const { userId } = req.params;
+    const getusers = await userModel.find(userId);
+    return res.status(200).json({ getusers });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
 
 
 
-
-module.exports = {createUser, getUser}
+module.exports = { createUser, getUser, };
